@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    username: ballroom_studio
+    password: ballroom_studio
+    url: jdbc:mysql://localhost:3306/ballroom_studio
+    
+    
+  jpa:
+     hibernate:
+       ddl-auto: update
+     show-sql: true
+  
+ sql:
+    init:
+      mode: always 
+   
