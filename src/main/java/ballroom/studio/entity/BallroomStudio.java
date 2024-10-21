@@ -1,6 +1,7 @@
 package ballroom.studio.entity;
 
 
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,10 +25,11 @@ public class BallroomStudio {
 	private String ballroomStudioState;
 	private String ballroomStudioZip;
 	private String ballroomStudioPhone;
-	
-	@OneToMany(mappedBy = "amenity", cascade = CascadeType.ALL)
+
+@OneToMany(mappedBy = "ballroomstudio", cascade = CascadeType.ALL)
 	private Set <Amenity> amenites  = new HashSet<>();
-	
-	@OneToMany(mappedBy = "instructors", cascade = CascadeType.ALL)
+@OneToMany(mappedBy = "ballroomstudio", cascade = CascadeType.ALL)
 	private Set <Instructors> instructors  = new HashSet<>();
+	
+	
 }

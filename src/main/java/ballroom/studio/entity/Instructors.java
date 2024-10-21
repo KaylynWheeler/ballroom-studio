@@ -44,11 +44,12 @@ public class Instructors {
 	@JoinColumn(name = "ballroom_studio_id")
 	private BallroomStudio ballroomStudio; 
 	
-	@OneToMany(mappedBy = "standardstyledancing", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "instructors", cascade = CascadeType.ALL)
 	private Set <StandardStyleDancing> standardstyledances  = new HashSet<>();
 	
-	@OneToMany(mappedBy = "latinstyledancing", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "instructors", cascade = CascadeType.ALL)
 	private Set <LatinStyleDancing> latinstyledances  = new HashSet<>();
+
 }
 
 

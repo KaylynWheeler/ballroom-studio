@@ -10,8 +10,7 @@ spring:
        ddl-auto: update
      show-sql: true
 
-      
   sql:
    init:
-     mode: always
-     
+     mode: always    
+
