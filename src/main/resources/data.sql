@@ -1,21 +1,40 @@
---Insert into the latinstyledancing table
-INSERT INTO latinstyledancing(latin_style_name) VALUES ('Samba');
-INSERT INTO latinstyledancing(latin_style_name) VALUES ('Rumba');
-INSERT INTO latinstyledancing(latin_style_name) VALUES ('Cha-Cha-Cha');
-INSERT INTO latinstyledancing(latin_style_name) VALUES ('Paso Doble');
-INSERT INTO latinstyledancing(latin_style_name) VALUES ('Jive');
+INSERT INTO ballroom_studio (ballroom_studio_name,ballroom_studio_address,ballroom_studio_city,ballroom_studio_state,ballroom_studio_zip ,ballroom_studio_phone)
+VALUES('DelMar', '1231 O Street', 'LINCOLN','NE','68508','402 876 5309' );
 
---Insert into the standardstyledancing table
-INSERT INTO standardstyledancing(standard_style_name) VALUES ('Waltz');
-INSERT INTO standardstyledancing(standard_style_name) VALUES('Quickstep')
-INSERT INTO standardstyledancing(standard_style_name) VALUES  ('Tango');
-INSERT INTO standardstyledancing(standard_style_name) VALUES  ('Slow Foxtrot');
-INSERT INTO standardstyledancing(standard_style_name) VALUES  ('Viennese Waltz);
+INSERT INTO instructors (ballroom_studio_id ,instructors_first_name,instructors_last_name)VALUES(1,'Jim','Latino');
+INSERT INTO instructors (ballroom_studio_id, instructors_first_name,instructors_last_name)VALUES(1,'Stan','Dred');
+INSERT INTO instructors(ballroom_studio_id ,instructors_first_name,instructors_last_name)VALUES(1,'Amber','Fall');
 
---Insert into the amenity table
-INSERT INTO amenity (amenity_name) VALUES ('ballroomfloors');
-INSERT INTO amenity (amenity_name) VALUES ('steriosystems');
-INSERT INTO amenity (amenity_name) VALUES ('ballroomshoes');
-INSERT INTO amenity (amenity_name) VALUES ('bathrooms');
-INSERT INTO amenity (amenity_name) VALUES('laptops');
-INSERT INTO amenity (amenity_name VALUES('receptionarea');
+INSERT INTO  latin_style_dancing(instructors_id ,latin_style_name)VALUES(1,'Samba');
+INSERT INTO latin_style_dancing(instructors_id ,latin_style_name)VALUES(1,'Rumba');
+INSERT INTO latin_style_dancing(instructors_id ,latin_style_name)VALUES(1,'Cha-Cha-Cha');
+INSERT INTO latin_style_dancing(instructors_id ,latin_style_name)VALUES(1,'Paso Doble');
+INSERT INTO latin_style_dancing(instructors_id ,latin_style_name)VALUES(1,'Jive');
+
+
+INSERT INTO standard_style_dancing(instructors_id ,standard_style_name)VALUES(2,'Waltz');
+INSERT INTO standard_style_dancing(instructors_id ,standard_style_name)VALUES(2,'Quickstep');
+INSERT INTO standard_style_dancing(instructors_id ,standard_style_name)VALUES(2,'Tango');
+INSERT INTO standard_style_dancing(instructors_id ,standard_style_name)VALUES(2,'Slow Foxtrot');
+INSERT INTO standard_style_dancing(instructors_id ,standard_style_name)VALUES(2,'Viennese Waltz');
+
+INSERT INTO  latin_style_dancing(instructors_id ,latin_style_name)VALUES(3,'Samba');
+INSERT INTO latin_style_dancing(instructors_id ,latin_style_name)VALUES(3,'Rumba');
+INSERT INTO latin_style_dancing(instructors_id ,latin_style_name)VALUES(3,'Cha-Cha-Cha');
+INSERT INTO latin_style_dancing(instructors_id ,latin_style_name)VALUES(3,'Paso Doble');
+INSERT INTO latin_style_dancing(instructors_id ,latin_style_name)VALUES(3,'Jive');
+
+
+INSERT INTO standard_style_dancing(instructors_id ,standard_style_name)VALUES(3,'Waltz');
+INSERT INTO standard_style_dancing(instructors_id ,standard_style_name)VALUES(3,'Quickstep');
+INSERT INTO standard_style_dancing(instructors_id ,standard_style_name)VALUES(3,'Tango');
+INSERT INTO standard_style_dancing(instructors_id ,standard_style_name)VALUES(3,'Slow Foxtrot');
+INSERT INTO standard_style_dancing(instructors_id ,standard_style_name)VALUES(3,'Viennese Waltz');
+
+
+INSERT INTO amenity (ballroom_studio_id ,amenity_name)VALUES(1,'ballroom floors');
+INSERT INTO amenity (ballroom_studio_id ,amenity_name)VALUES(1,'stereo systems');
+INSERT INTO amenity (ballroom_studio_id ,amenity_name)VALUES(1,'ballroom shoes');
+INSERT INTO amenity (ballroom_studio_id ,amenity_name)VALUES(1,'bathrooms');
+INSERT INTO amenity (ballroom_studio_id ,amenity_name)VALUES(1,'laptops');
+INSERT INTO amenity (ballroom_studio_id ,amenity_name) VALUES(1,'reception area');

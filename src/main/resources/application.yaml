@@ -6,11 +6,11 @@ spring:
     
     
   jpa:
-     hibernate:
-       ddl-auto: update
-     show-sql: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
   sql:
-   init:
-     mode: always    
+    init:
+      mode: never    
 

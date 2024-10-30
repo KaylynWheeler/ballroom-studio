@@ -26,9 +26,9 @@ public class BallroomStudio {
 	private String ballroomStudioZip;
 	private String ballroomStudioPhone;
 
-@OneToMany(mappedBy = "ballroomstudio", cascade = CascadeType.ALL)
-	private Set <Amenity> amenites  = new HashSet<>();
-@OneToMany(mappedBy = "ballroomstudio", cascade = CascadeType.ALL)
+@OneToMany(mappedBy = "ballroomStudio", cascade = CascadeType.ALL)
+	private Set <Amenity> amenities  = new HashSet<>();
+@OneToMany(mappedBy = "ballroomStudio", cascade = CascadeType.ALL)
 	private Set <Instructors> instructors  = new HashSet<>();
 	
 	

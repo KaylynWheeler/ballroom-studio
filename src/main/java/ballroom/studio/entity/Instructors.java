@@ -34,7 +34,7 @@ public class Instructors {
 	@ManyToMany(cascade =jakarta.persistence.CascadeType.PERSIST)
 	@JoinTable(
 	   name="instructors_students",
-	   joinColumns = @JoinColumn(name =" instructors_id"),
+	   joinColumns = @JoinColumn(name ="instructors_id"),
 	   inverseJoinColumns = @JoinColumn( name = "students_id"))
 	   private Set<Students> students = new HashSet<>();
 
