@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,11 @@ import ballroom.studio.entity.Instructors;
 import ballroom.studio.entity.LatinStyleDancing;
 import ballroom.studio.entity.StandardStyleDancing;
 import ballroom.studio.entity.Students;
+import pet.park.controller.model.ContributorData;
+import pet.park.entity.Contributor;
+import pet.store.controller.model.PetStoreEmployee;
+import pet.store.entity.Employee;
+import pet.store.entity.PetStore;
 
 
 
@@ -80,7 +86,7 @@ public static Object mergeData(Object src,Object target) throws Exception {
 	if (src instanceof BallroomStudio) {
 	if (src instanceof Amenity) {
 	if (src instanceof Instructors) {
-	if (src instanceof Students) {
+	
 			
 			Class<?> clazz = src.getClass();
 			for (Field srcField:clazz.getDeclaredFields()) {
@@ -280,34 +286,41 @@ private static  Instructors findInstructorsById(Long instructorsId) {
 @Transactional(readOnly=false)
 public static  BallroomStudioInstructors saveStudents(Long instructorsId,
 			BallroomStudioInstructors ballroomStudioInstructors) {
-
-	try {
-		BallroomStudioInstructors students= findStudents(ballroomStudioInstructors);
-		if(students == null) {
-			students =  BallroomStudioData.toStudents();
-			students=  BallroomStudioData.save(students);
-		  
-		}else{
-			 ballroomStudioInstructors=(BallroomStudioInstructors)mergeData(students,  ballroomStudioInstructors);
-			 students =studentsDao.save(BallroomStudioInstructors.toStudents();
-			 ballroomStudioInstructors=new BallroomStudioData(students);
-		}
-		}catch (Exception e) {
-			throw new NoSuchElementException("Error proceeding save/update location",e);
-			
-		}
-		return  ballroomStudioInstructors;
-	}
+	BallroomStudioInstructors ballroomStudioInstructors =findStudentsById(instructorsId);
+	Long studentsId = BallroomStudioInstructors.getstudentsId;
+	Students students = findOrCreateStudents(instructorsId, studentsId);
 	
-
-
-
-private static BallroomStudioInstructors findStudents(BallroomStudioInstructors ballroomStudioInstructors) {
-	// TODO Auto-generated method stub
-	return null;
+	copyStudentsFields(studentsId), ballroomStudioInstructorsStudents);
+	
+	
+	students.setBallroomStudioInstructors;
+	BallroomStudioInstructors.getStudents().add(students);
+	
+	Students BallroomStudioInstructorsStudents = studentsDao.save(students);
+	
+	return new BallroomStudioInstructors(BallroomStudioInstructorsStudents);
 }
 
+private void copyStudentsFields(Students students, BallroomStudioInstructors ballroomStudioInstructors) {
+	students.setStudentsId( ballroomStudioInstructors.getInstructorsId());
+	students.setStudentsFirstName( ballroomStudioInstructors.getInstructorsFirstName());
+	students.setStudentsLastName(ballroomStudioInstructors.getInstructorsLastName());
+	students.setStudentsPhone(ballroomStudioInstructors.getInstructorsPhone());
+	
+	
+}
 
+private static Students findOrCreateStudents(Long InstructorsId, Long studentsId) {
+	  if (Objects.isNull(studentsId)) {
+		  return new Students();
+	  
+	}else {
+		return findStudentsById(InstructorsId,studentsId);
+	}
+
+	}
+
+	
 
 
 @Transactional(readOnly = true)
