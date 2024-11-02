@@ -23,10 +23,10 @@ public BallroomStudioInstructorsStudents  (Students students) {
 	 studentsLastName =  students.getStudentsLastName();
 	 studentsPhone =  students.getStudentsPhone();
     
-	 for (Instructors instructors : students.getInstructors()) {
-			instructors.add(new BallroomStudioInstructors(instructors));
-}
+	 for (Instructors instructor : students.getInstructors()) {
+			instructors.add(new BallroomStudioInstructors(instructor));
+          }
 
-}
+     }
 
 }

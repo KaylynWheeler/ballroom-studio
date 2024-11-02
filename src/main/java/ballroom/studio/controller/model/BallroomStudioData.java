@@ -3,7 +3,6 @@ package ballroom.studio.controller.model;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import ballroom.studio.entity.Amenity;
 import ballroom.studio.entity.BallroomStudio;
 import ballroom.studio.entity.Instructors;
@@ -11,8 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@Data
-@NoArgsConstructor
+@Data@NoArgsConstructor
 public class BallroomStudioData {
 	private Long ballroomStudioId;
 	private String ballroomStudioName;
@@ -43,14 +41,16 @@ public class BallroomStudioData {
 	}
 
 
-	for (Instructors instructors : ballroomStudio.getInstructors()) {
-		instructors.add(new BallroomStudioInstructors(instructors));
+	for (Instructors instructor : ballroomStudio.getInstructors()) {
+		instructors.add(new BallroomStudioInstructors(instructor));
 		
 	
 	}
 	
-	
 	}
+	
 }
+	
+
 
 	
