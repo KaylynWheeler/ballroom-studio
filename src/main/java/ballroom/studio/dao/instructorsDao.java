@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import ballroom.studio.entity.Instructors;
 
-public interface instructorsDao extends JpaRepository<Instructors, Long> {
+public interface InstructorsDao extends JpaRepository<Instructors, Long> {
 
 }

@@ -1,7 +1,7 @@
 package ballroom.studio.service;
 
 
-import java.lang.reflect.Field;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -10,132 +10,93 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import ballroom.studio.controller.model.BallroomStudioAmenity;
 import ballroom.studio.controller.model.BallroomStudioData;
 import ballroom.studio.controller.model.BallroomStudioInstructors;
-import ballroom.studio.dao.amenityDao;
-import ballroom.studio.dao.ballroomStudioDao;
-import ballroom.studio.dao.instructorsDao;
-import ballroom.studio.dao.latinStyleDancingDao;
-import ballroom.studio.dao.standardStyleDancingDao;
-import ballroom.studio.dao.studentsDao;
+import ballroom.studio.controller.model.BallroomStudioInstructorsLatinStyleDancing;
+import ballroom.studio.controller.model.BallroomStudioInstructorsStandardStyleDancing;
+import ballroom.studio.controller.model.BallroomStudioInstructorsStudents;
+import ballroom.studio.dao.AmenityDao;
+import ballroom.studio.dao.BallroomStudioDao;
+import ballroom.studio.dao.InstructorsDao;
+import ballroom.studio.dao.LatinStyleDancingDao;
+import ballroom.studio.dao.StandardStyleDancingDao;
+import ballroom.studio.dao.StudentsDao;
 import ballroom.studio.entity.Amenity;
 import ballroom.studio.entity.BallroomStudio;
 import ballroom.studio.entity.Instructors;
 import ballroom.studio.entity.LatinStyleDancing;
 import ballroom.studio.entity.StandardStyleDancing;
 import ballroom.studio.entity.Students;
-import pet.park.controller.model.ContributorData;
-import pet.park.entity.Contributor;
-import pet.store.controller.model.PetStoreEmployee;
-import pet.store.entity.Employee;
-import pet.store.entity.PetStore;
 
 
 
-public class ballroomStudioService {
+
+public class BallroomStudioService {
 	@Autowired
-	private static amenityDao amenityDao;
+	private static AmenityDao amenityDao;
 	@Autowired
-	private static ballroomStudioDao ballroomStudioDao;
+	private static BallroomStudioDao ballroomStudioDao;
 
 	@Autowired
-	private static instructorsDao instructorsDao;
+	private static InstructorsDao instructorsDao;
 	
 	@Autowired
-	private static latinStyleDancingDao latinStyleDancingDao;
+	private static LatinStyleDancingDao latinStyleDancingDao;
 	
 	@Autowired
-	private static standardStyleDancingDao standardStyleDancingDao;
+	private static StandardStyleDancingDao standardStyleDancingDao;
 	
 	@Autowired
-	private static studentsDao studentsDao;
+	private static StudentsDao studentsDao;
 	
 
 @Transactional(readOnly=false)	
-public static  BallroomStudioData saveBallroomStudio(BallroomStudioData ballroomStudioData) {
-		try {
-			BallroomStudio ballroomstudio = findBallroomStudio(ballroomStudioData);
-			if(ballroomstudio == null) {
-			  ballroomstudio =  BallroomStudioData.toBallroomStudio();
-			  ballroomstudio=  BallroomStudioData.save(ballroomstudio);
-			  
-			}else{
-				ballroomStudioData=(BallroomStudioData)mergeData(ballroomstudio, ballroomStudioData);
-				ballroomstudio =ballroomStudioDao.save(ballroomStudioData.toBallroomStudio());
-				ballroomStudioData=new BallroomStudioData(ballroomstudio);
-			}
-			}catch (Exception e) {
-				throw new NoSuchElementException("Error proceeding save/update location",e);
-				
-			}
-			return  ballroomStudioData;
-		}
+public  BallroomStudioData updateBallroomStudio(BallroomStudioData ballroomStudioData) {
+	Long ballroomStudioId = ballroomStudioData.getBallroomStudioId();
+	BallroomStudio ballroomStudio =findOrCreateBallroomStudio(ballroomStudioId);
+			
 	
-
-
-
-private static BallroomStudio findBallroomStudio(BallroomStudioData ballroomStudioData) {
-	// TODO Auto-generated method stub
-	return null;
+	setFieldsInBallroomStudio(ballroomStudio,ballroomStudioData);
+	
+	return new BallroomStudioData(ballroomStudioDao.save(ballroomStudio));
+	
+}
+	
+private void setFieldsInBallroomStudio(BallroomStudio ballroomStudio, BallroomStudioData ballroomStudioData) {
+	ballroomStudio.setBallroomStudioId(ballroomStudioData.getBallroomStudioId());
+	ballroomStudio.setBallroomStudioName(ballroomStudioData.getBallroomStudioName());
+	ballroomStudio.setBallroomStudioAddress(ballroomStudioData.getBallroomStudioAddress());;
+	ballroomStudio.setBallroomStudioCity(ballroomStudioData.getBallroomStudioCity());
+	ballroomStudio.setBallroomStudioState(ballroomStudioData.getBallroomStudioState());
+	ballroomStudio.setBallroomStudioZip(ballroomStudioData.getBallroomStudioZip());
+	ballroomStudio.setBallroomStudioPhone(ballroomStudioData.getBallroomStudioPhone());
+	
 }
 
-
-
-
-public static Object mergeData(Object src,Object target) throws Exception {
-	if (src instanceof BallroomStudio) {
-	if (src instanceof Amenity) {
-	if (src instanceof Instructors) {
-	
-			
-			Class<?> clazz = src.getClass();
-			for (Field srcField:clazz.getDeclaredFields()) {
-				targetField.setAccessible(true);
-				String localName = srcField.getName();
-				String remoreName=targetField.getName();
-			
-				
-				if(localNamme != null && remoteName != null) {
-					if(localName.equalsIgnoreCase(remoreName)) {
-						Object srcValue = srcField.get(src);
-						Object targetValue = targetField.get(target);
-						
-				if(targetField.get(target)== null) {
-					targetField.set(target,srcValue);
-					
-					Object targetValue = targetField.get(target);
-					if (targetValue instanceof String) {
-						String targetStr = (String) targetValue;
-						String srcStr = (String) srcValue;
-						if (!srcStr.contains(targetStr)) {
-							targetField.set(target, srcValue);
-						
-						
-					} else if (targetValue instanceof Long) {
-						Long targetLong = (Long) targetValue;
-						Long srcLong = (Long) srcValue;
-						if (srcLong.longValue() != targetLong.longValue()) {
-							targetField.set(target, srcValue);
-						}
-					}
-				}
-			}
-		}
+private BallroomStudio findOrCreateBallroomStudio(Long ballroomStudioId) {
+	BallroomStudio ballroomStudio;
+	if(Objects.isNull(ballroomStudioId)) {
+		 ballroomStudio = new BallroomStudio();
+		
+	}else {
+		 ballroomStudio = findBallroomStudioId(ballroomStudioId);
 	}
-}
-}
-return target;
 
+	return ballroomStudio;
 	}
 
 
-
-
+private BallroomStudio findBallroomStudioId(Long ballroomStudioId) {
+	return ballroomStudioDao.findById(ballroomStudioId)
+			.orElseThrow(() -> new NoSuchElementException(
+			"Ballroom Studio with ID=" + ballroomStudioId + " was not found." ));
+}
 
 @Transactional(readOnly = true)
-public static  BallroomStudioData retrieveballroomStudioById(Long ballroomStudioId) {
+public  BallroomStudioData retrieveballroomStudioById(Long ballroomStudioId) {
 		BallroomStudio ballroomStudio =findBallroomStudioById(ballroomStudioId);
-		return BallroomStudioData(ballroomStudio);
+		return new BallroomStudioData(ballroomStudio);
 
 	}
 private BallroomStudio findBallroomStudioById(Long ballroomStudioId) {
@@ -146,37 +107,42 @@ private BallroomStudio findBallroomStudioById(Long ballroomStudioId) {
 
 
 @Transactional(readOnly=false)
-public static  BallroomStudioData saveAmenity(BallroomStudioData ballroomStudioData) {
-	try {
-		BallroomStudio amenity= findAmenity(ballroomStudioData);
-		if(amenity == null) {
-		  amenity =  BallroomStudioData.toAmenity();
-		  amenity=  BallroomStudioData.save(amenity);
-		  
-		}else{
-			ballroomStudioData=(BallroomStudioData)mergeData(amenity, ballroomStudioData);
-			amenity =amenityDao.save(ballroomStudioData.toAmenity());
-			ballroomStudioData=new BallroomStudioData(amenity);
-		}
-		}catch (Exception e) {
-			throw new NoSuchElementException("Error proceeding save/update location",e);
+public BallroomStudioAmenity updateAmenity(BallroomStudioAmenity ballroomStudioAmenity) {
+	Long amenityId = ballroomStudioAmenity.getAmenityId();
+	Amenity amenity =findOrCreateAmenity(amenityId);
 			
-		}
-		return  ballroomStudioData;
+	
+	setFieldsInAmenity(amenity,ballroomStudioAmenity);
+	
+	return new BallroomStudioAmenity(amenityDao.save(amenity));
+	
+}
+
+
+
+
+private void setFieldsInAmenity(Amenity amenity, BallroomStudioAmenity ballroomStudioAmenity) {
+	amenity.setAmenityId(ballroomStudioAmenity.getAmenityId());
+	amenity.setAmenityName(ballroomStudioAmenity.getAmenityName());
+	
+}
+
+
+private Amenity findOrCreateAmenity(Long amenityId) {
+	if(Objects.isNull(amenityId)) {
+		return new Amenity();
 	}
 	
-	
-
-
-
+	return findAmenityById(amenityId);
+}
 
 @Transactional(readOnly = true)
-public static List<BallroomStudioData> retrieveAllAmenity() {
+public List<BallroomStudioAmenity> retrieveAllAmenity() {
 	List<Amenity> amenities= amenityDao.findAll();
-	List<BallroomStudioData> response = new LinkedList<>();
+	List<BallroomStudioAmenity> response = new LinkedList<>();
 	
   for(Amenity amenity : amenities)
-		response.add(new BallroomStudioData(amenity));
+		response.add(new BallroomStudioAmenity(amenity));
  return response;
 	}
 
@@ -184,13 +150,13 @@ public static List<BallroomStudioData> retrieveAllAmenity() {
 
 
 @Transactional(readOnly = true)
-public static  BallroomStudioData retrieveAmenityById(Long amenityId) {
+public  BallroomStudioAmenity retrieveAmenityById(Long amenityId) {
 		Amenity amenity =findAmenityById(amenityId);
-		return BallroomStudioData(amenity);
+		return new BallroomStudioAmenity(amenity);
 		
 	}
 	
-private static  Amenity findAmenityById(Long amenityId) {
+private   Amenity findAmenityById(Long amenityId) {
 	return amenityDao.findById(amenityId)
 			.orElseThrow(() -> new NoSuchElementException(
 					"Amenity with Id=" + amenityId + " was not found." ));
@@ -210,40 +176,42 @@ public void deleteAmenityById(Long amenityId) {
 
 
 @Transactional(readOnly=false)
-public static  BallroomStudioData saveInstructors(BallroomStudioData ballroomStudioData) {
-	try {
-		BallroomStudio instructors= findInstructors(ballroomStudioData);
-		if(instructors == null) {
-		   instructors =  BallroomStudioData.toInstructors();
-		   instructors=  BallroomStudioData.save(instructors);
-		  
-		}else{
-			ballroomStudioData=(BallroomStudioData)mergeData(instructors, ballroomStudioData);
-			instructors =instructorsDao.save(ballroomStudioData.toInstructors());
-			ballroomStudioData=new BallroomStudioData(instructors);
-		}
-		}catch (Exception e) {
-			throw new NoSuchElementException("Error proceeding save/update location",e);
+public BallroomStudioInstructors updateInstructors(BallroomStudioInstructors ballroomStudioInstructors) { {
+	Long instructorsId =ballroomStudioInstructors.getInstructorsId();
+	Instructors instructors =findOrCreateInstructors(instructorsId);
 			
-		}
-		return  ballroomStudioData;
-	}
+	
+	setFieldsIninstructors(instructors,ballroomStudioInstructors);
+	
+	return new  BallroomStudioInstructors(instructorsDao.save(instructors));
+	
+}
+
 	
 
+}
 
+private void setFieldsIninstructors(Instructors instructors, BallroomStudioInstructors ballroomStudioInstructors) {
+	instructors.setInstructorsId(ballroomStudioInstructors.getInstructorsId());
+	instructors.setInstructorsFirstName(ballroomStudioInstructors.getInstructorsFirstName());;
+	instructors.setInstructorsLastName(ballroomStudioInstructors.getInstructorsLastName());
+	instructors.setInstructorsPhone(ballroomStudioInstructors.getInstructorsPhone());
+	
+}
 
-private static BallroomStudio findInstructors(BallroomStudioData ballroomStudioData) {
-	// TODO Auto-generated method stub
-	return null;
+private Instructors findOrCreateInstructors(Long instructorsId) {
+	if(Objects.isNull(instructorsId)) {
+		return new Instructors();
+	}
+	
+	return findInstructorsById(instructorsId);
 }
 
 
-
-
 @Transactional(readOnly = true)
-public static  List<BallroomStudioData> retrieveAllInstructors() {
+public  List<BallroomStudioInstructors> retrieveAllInstructors() {
 		 return instructorsDao.findAll()
-					.stream().map(BallroomStudioData::new)
+					.stream().map(BallroomStudioInstructors::new)
 					.toList();
 	}
 
@@ -251,20 +219,13 @@ public static  List<BallroomStudioData> retrieveAllInstructors() {
 
 
 @Transactional(readOnly = true)
-public static BallroomStudioData retrieveInstructorsById(Long instructorsId) {
+public  BallroomStudioInstructors retrieveInstructorsById(Long instructorsId) {
 		Instructors instructors =findInstructorsById(instructorsId);
-		return BallroomStudioData(instructors);
+		return new BallroomStudioInstructors(instructors);
 		
 	}
 
-
-
-
-
-
-
-
-private static  Instructors findInstructorsById(Long instructorsId) {
+private  Instructors findInstructorsById(Long instructorsId) {
 	return instructorsDao.findById(instructorsId)
 			.orElseThrow(() -> new NoSuchElementException(
 					"Instructors with Id=" +instructorsId + " was not found." ));
@@ -280,53 +241,62 @@ private static  Instructors findInstructorsById(Long instructorsId) {
 	}
 		
 	
-
-
-
 @Transactional(readOnly=false)
-public static  BallroomStudioInstructors saveStudents(Long instructorsId,
-			BallroomStudioInstructors ballroomStudioInstructors) {
-	BallroomStudioInstructors ballroomStudioInstructors =findStudentsById(instructorsId);
-	Long studentsId = BallroomStudioInstructors.getstudentsId;
-	Students students = findOrCreateStudents(instructorsId, studentsId);
-	
-	copyStudentsFields(studentsId), ballroomStudioInstructorsStudents);
-	
-	
-	students.setBallroomStudioInstructors;
-	BallroomStudioInstructors.getStudents().add(students);
-	
-	Students BallroomStudioInstructorsStudents = studentsDao.save(students);
-	
-	return new BallroomStudioInstructors(BallroomStudioInstructorsStudents);
+public  BallroomStudioInstructorsStudents saveStudents(Long instructorsId,BallroomStudioInstructorsStudents ballroomStudioInstructorsStudents) {
+		Instructors instructors = findInstructorsById(instructorsId);
+Long studentsId =ballroomStudioInstructorsStudents.getStudentsId();
+Students students = findOrCreateStudents(instructorsId, studentsId);
+
+copyStudentsFields(students, ballroomStudioInstructorsStudents);
+
+
+students.getInstructors().add(instructors);
+instructors .getStudents().add(students);
+
+Students dbStudents = studentsDao.save(students);
+
+return new BallroomStudioInstructorsStudents(dbStudents);
 }
 
-private void copyStudentsFields(Students students, BallroomStudioInstructors ballroomStudioInstructors) {
-	students.setStudentsId( ballroomStudioInstructors.getInstructorsId());
-	students.setStudentsFirstName( ballroomStudioInstructors.getInstructorsFirstName());
-	students.setStudentsLastName(ballroomStudioInstructors.getInstructorsLastName());
-	students.setStudentsPhone(ballroomStudioInstructors.getInstructorsPhone());
-	
-	
+private void copyStudentsFields(Students students, BallroomStudioInstructorsStudents ballroomStudioInstructorsStudents) {
+students.setStudentsId(ballroomStudioInstructorsStudents.getStudentsId());
+students.setStudentsFirstName(ballroomStudioInstructorsStudents.getStudentsFirstName());;
+students.setStudentsLastName(ballroomStudioInstructorsStudents.getStudentsLastName());
+students.setStudentsPhone(ballroomStudioInstructorsStudents.getStudentsPhone());
 }
 
-private static Students findOrCreateStudents(Long InstructorsId, Long studentsId) {
-	  if (Objects.isNull(studentsId)) {
-		  return new Students();
-	  
-	}else {
-		return findStudentsById(InstructorsId,studentsId);
-	}
+private Students findOrCreateStudents(Long instructorsId, Long studentsId) {
+if(Objects.isNull(studentsId)) {
+	return new Students();
+}
 
-	}
+return findStudentsById(instructorsId, studentsId);
+}
 
-	
+private Students findStudentsById(Long instructorsId, Long studentsId) {
+	Students students = studentsDao.findById(studentsId)
+		 .orElseThrow(()-> new NoSuchElementException("Students with Id=" + studentsId + " was not found."	));	
+		boolean found = false;
+		
+		for(Instructors instructors : students.getInstructors()) {
+			if (instructors.getInstructorsId()== instructorsId) {
+				found = true;
+				break;
+			}
+		}
+		if(!found) {
+			throw new IllegalArgumentException("The customer with ID=" + studentsId + 
+					"is not emplyee by the pet store with ID=" + instructorsId + ".");
+		}
+			return students;
+
+		}
 
 
 @Transactional(readOnly = true)
-public static  List<BallroomStudioInstructors> retrieveAllStudents() {
+public List<BallroomStudioInstructorsStudents> retrieveAllStudents() {
 		 return studentsDao.findAll()
-					.stream().map(BallroomStudioInstructors::new)
+					.stream().map(BallroomStudioInstructorsStudents::new)
 					.toList();
 	}
 
@@ -334,15 +304,15 @@ public static  List<BallroomStudioInstructors> retrieveAllStudents() {
 
 
 @Transactional(readOnly = true)
-public static  BallroomStudioInstructors retrieveStudentsById(Long studentsId) {
+public   BallroomStudioInstructorsStudents retrieveStudentsById(Long studentsId) {
 		Students students =findStudentsById(studentsId);
-		return BallroomStudioInstructors(students);
+		return  new BallroomStudioInstructorsStudents(students);
 		
 	}
 
 
 
-private static  Students findStudentsById(Long studentsId) {
+private  Students findStudentsById(Long studentsId) {
 	return studentsDao.findById(studentsId)
 			.orElseThrow(() -> new NoSuchElementException(
 					"Students with Id=" + studentsId + " was not found." ));
@@ -361,9 +331,9 @@ public void deleteStudentsById(Long studentsId) {
 
 
 @Transactional(readOnly = true)
-public static  List<BallroomStudioInstructors> retrieveAllLatinStyleDancing() {
+public List<BallroomStudioInstructorsLatinStyleDancing> retrieveAllLatinStyleDancing() {
 		 return latinStyleDancingDao.findAll()
-					.stream().map(BallroomStudioInstructors::new)
+					.stream().map(BallroomStudioInstructorsLatinStyleDancing::new)
 					.toList();
 	}
 
@@ -371,9 +341,9 @@ public static  List<BallroomStudioInstructors> retrieveAllLatinStyleDancing() {
 
 
 @Transactional(readOnly = true)
-	public static BallroomStudioInstructors retrieveLatinStyleDancingId(Long latinStyleDancingId) {
+	public  BallroomStudioInstructorsLatinStyleDancing retrieveLatinStyleDancingId(Long latinStyleDancingId) {
 		LatinStyleDancing latinStyleDancing =findLatinStyleDancingById(latinStyleDancingId);
-		return BallroomStudioInstructors(latinStyleDancing);
+		return new BallroomStudioInstructorsLatinStyleDancing(latinStyleDancing);
 	}
 
 
@@ -381,7 +351,7 @@ public static  List<BallroomStudioInstructors> retrieveAllLatinStyleDancing() {
 
 
 
-private static LatinStyleDancing findLatinStyleDancingById(Long latinStyleDancingId) {
+private  LatinStyleDancing findLatinStyleDancingById(Long latinStyleDancingId) {
 	return latinStyleDancingDao.findById(latinStyleDancingId)
 			.orElseThrow(() -> new NoSuchElementException(
 					"LatinStyleDancing with Id=" + latinStyleDancingId + " was not found." ));
@@ -390,9 +360,9 @@ private static LatinStyleDancing findLatinStyleDancingById(Long latinStyleDancin
 
 
 @Transactional(readOnly = true)
-public static  List<BallroomStudioInstructors> retrieveStandardStyleDancing() {
+public List<BallroomStudioInstructorsStandardStyleDancing> retrieveStandardStyleDancing() {
 		 return standardStyleDancingDao.findAll()
-					.stream().map(BallroomStudioInstructors::new)
+					.stream().map(BallroomStudioInstructorsStandardStyleDancing::new)
 					.toList();
 	}
 
@@ -400,9 +370,9 @@ public static  List<BallroomStudioInstructors> retrieveStandardStyleDancing() {
 
 
 @Transactional(readOnly = true)
-public static  BallroomStudioInstructors retrieveStandardStyleDancingId(Long standardStyleDancingId) {
+public  BallroomStudioInstructorsStandardStyleDancing retrieveStandardStyleDancingId(Long standardStyleDancingId) {
 		StandardStyleDancing standardStyleDancing =findStandardStyleDancingById(standardStyleDancingId);
-		return BallroomStudioInstructors(standardStyleDancing);
+		return  new BallroomStudioInstructorsStandardStyleDancing(standardStyleDancing);
 	}
 
 
@@ -414,8 +384,10 @@ public static  BallroomStudioInstructors retrieveStandardStyleDancingId(Long sta
 private static  StandardStyleDancing findStandardStyleDancingById(Long standardStyleDancingId) {
 	return standardStyleDancingDao.findById(standardStyleDancingId)
 			.orElseThrow(() -> new NoSuchElementException(
-					"StandardStyleDancing with Id=" + standardStyleDancingId + " was not found." ));
+					"Standard Style Dancing with Id=" + standardStyleDancingId + " was not found." ));
 }
+
+
 
 
 

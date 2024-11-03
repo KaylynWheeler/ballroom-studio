@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import ballroom.studio.entity.StandardStyleDancing;
 
-public interface standardStyleDancingDao extends JpaRepository<StandardStyleDancing, Long> {
+public interface StandardStyleDancingDao extends JpaRepository<StandardStyleDancing, Long> {
 
 }
