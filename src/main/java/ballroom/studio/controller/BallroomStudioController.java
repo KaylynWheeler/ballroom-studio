@@ -25,13 +25,14 @@ import ballroom.studio.service.BallroomStudioService;
 import lombok.extern.slf4j.Slf4j;
 
 
+
 @RestController
 @RequestMapping("/ballroom_studio")
 @Slf4j
 
 public class BallroomStudioController {
 	
-	@Autowired
+@Autowired
 	private BallroomStudioService ballroomStudioService;
 	
 @PutMapping("/ballroomstudio/{ballroomStudioId}")
@@ -79,7 +80,7 @@ throw new UnsupportedOperationException(
 public Map< String ,String>deleteAmenityById(
 		@PathVariable Long amenityId) {
 	log.info("Deleting amenties with ID= {}",amenityId);
-	BallroomStudioService ballroomStudioService = new BallroomStudioService();
+	
 	ballroomStudioService.deleteAmenityById(amenityId);
 	 
 	 return Map.of("message", "Delete amenities with ID=" + amenityId +
@@ -114,7 +115,7 @@ throw new UnsupportedOperationException(
 public Map< String ,String>deleteInstructorsById(
 		@PathVariable Long instructorsId) {
 	log.info("Deleting instructors with ID= {}",instructorsId);
-	BallroomStudioService ballroomStudioService = new BallroomStudioService();
+	
 	ballroomStudioService.deleteInstructorsById(instructorsId);
 	 
 	 return Map.of("message", "Delete instructors with ID=" + instructorsId +
@@ -127,8 +128,17 @@ public BallroomStudioInstructorsStudents addStudentsToBallRoomStudioInstuctors(@
 		@RequestBody BallroomStudioInstructorsStudents ballroomStudioInstructorsStudent ) {
 	log.info("Adding stundents {} to ballroom studio Instructors with ID{}", ballroomStudioInstructorsStudent);
 	return ballroomStudioService.saveStudents(instructorsId,ballroomStudioInstructorsStudent);
-	
 }
+
+@PutMapping("/students/{studentsId}")
+	public BallroomStudioInstructorsStudents updateStudents(@PathVariable Long studentsId, 
+			@RequestBody  BallroomStudioInstructorsStudents  ballroomStudioInstructorsStudents) {
+	 ballroomStudioInstructorsStudents.setStudentsId(studentsId);
+		log.info("Updating Srudents {}", ballroomStudioInstructorsStudents);
+		return ballroomStudioService.saveStudents(studentsId,ballroomStudioInstructorsStudents);
+		
+	} 
+
 @GetMapping("/students")
 public List<BallroomStudioInstructorsStudents> retrieveAllStudents(){
 	log.info("Retrieve all students called.");
@@ -149,8 +159,7 @@ throw new UnsupportedOperationException(
 @DeleteMapping("/students/{studentsId}")
 public Map< String ,String>deleteStudentsById(
 		@PathVariable Long studentsId) {
-	log.info("Deleting students with ID= {}",studentsId);
-	BallroomStudioService ballroomStudioService = new BallroomStudioService();
+
 	ballroomStudioService.deleteStudentsById(studentsId);
 	 
 	 return Map.of("message", "Delete students with ID=" + studentsId +

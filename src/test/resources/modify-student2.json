@@ -1,0 +1,12 @@
+{
+   "instructorsId" : "2",
+   "studentsFirstName" : "Lacy",
+    "studentsLastName" :"Pale",
+	"studentsAddress" : "5674 Maple Street",
+	"studentsCity": "Hallam",
+	"studentssState" : "NE",
+	"studentsZip":"68368",
+	"studentsPhone" :"402 659-7265",
+	"studentsEmail": "lacypale@outlook.com"
+
+}

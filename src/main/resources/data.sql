@@ -1,9 +1,16 @@
-INSERT INTO ballroom_studio (ballroom_studio_name,ballroom_studio_address,ballroom_studio_city,ballroom_studio_state,ballroom_studio_zip ,ballroom_studio_phone)
-VALUES('DelMar', '1231 O Street', 'LINCOLN','NE','68508','402 876 5309' );
+INSERT INTO ballroom_studio (ballroom_studio_name,ballroom_studio_address,
+ballroom_studio_city,ballroom_studio_state,ballroom_studio_zip ,ballroom_studio_phone,ballroom_studio_email)
+VALUES('DelRay Ballroom Dance', '1231 O Street', 'LINCOLN','NE','68508','402 876 5309','info@delrayballroomdance.com');
 
-INSERT INTO instructors (ballroom_studio_id ,instructors_first_name,instructors_last_name)VALUES(1,'Jim','Latino');
-INSERT INTO instructors (ballroom_studio_id, instructors_first_name,instructors_last_name)VALUES(1,'Stan','Dred');
-INSERT INTO instructors(ballroom_studio_id ,instructors_first_name,instructors_last_name)VALUES(1,'Amber','Fall');
+INSERT INTO instructors (ballroom_studio_id ,instructors_first_name,instructors_last_name,instructors_address,
+	instructors_city,instructors_state,instructors_zip,instructors_phone,instructors_email)VALUES(1,'Jim','Latino',
+	'1805 Parkview Place','Lincon','NE','68503','402 754 3657','jimlatino@delrayballroomdance.com');
+INSERT INTO instructors (ballroom_studio_id, instructors_first_name,instructors_last_name,instructors_address,
+	instructors_city,instructors_state,instructors_zip,instructors_phone,instructors_email)VALUES(1,'Stan','Dred',
+	'9055 Town Hall Drive ','Lincon','NE','68506','402 905 8765','standred@delrayballroomdance.com');
+INSERT INTO instructors(ballroom_studio_id ,instructors_first_name ,instructors_last_name,instructors_address,
+	instructors_city,instructors_state,instructors_zip,instructors_phone,instructors_email)VALUES(1,'Amber','Fall',
+	'7864 Fall City Drive','Lincon','NE','68501','402 728 4578','amberfall@delrayballroomdance.com');
 
 INSERT INTO  latin_style_dancing(instructors_id ,latin_style_name)VALUES(1,'Samba');
 INSERT INTO latin_style_dancing(instructors_id ,latin_style_name)VALUES(1,'Rumba');

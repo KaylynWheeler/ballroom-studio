@@ -27,7 +27,12 @@ public class Instructors {
 	private Long instructorsId;
 	private String instructorsFirstName;
 	private String instructorsLastName;
+	private String instructorsAddress;
+	private String instructorsCity;
+	private String instructorsState;
+	private String instructorsZip;
 	private String instructorsPhone;
+	private String instructorsEmail;
 	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude

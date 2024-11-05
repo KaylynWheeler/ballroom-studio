@@ -25,6 +25,7 @@ public class BallroomStudio {
 	private String ballroomStudioState;
 	private String ballroomStudioZip;
 	private String ballroomStudioPhone;
+	private String ballroomStudioEmail;
 
 @OneToMany(mappedBy = "ballroomStudio", cascade = CascadeType.ALL)
 	private Set <Amenity> amenities  = new HashSet<>();

@@ -18,7 +18,12 @@ public class Students {
 	private Long studentsId;
 	private String studentsFirstName;
 	private String studentsLastName;
+	private String studentsAddress;
+	private String studentsCity;
+	private String studentsState;
+	private String studentsZip;
 	private String studentsPhone;
+	private String studentsEmail;
 	
 	@ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST)
 	 private Set<Instructors> instructors = new HashSet<>();

@@ -19,6 +19,7 @@ public class BallroomStudioData {
 	private String ballroomStudioState;
 	private String ballroomStudioZip;
 	private String ballroomStudioPhone;
+	private String ballroomStudioEmail;
 	private Set <BallroomStudioAmenity> amenities  = new HashSet<>();
 	private Set <BallroomStudioInstructors> instructors  = new HashSet<>();
 	
@@ -30,6 +31,7 @@ public class BallroomStudioData {
     	ballroomStudioState=ballroomStudio.getBallroomStudioState();
     	ballroomStudioZip= ballroomStudio.getBallroomStudioZip();
     	ballroomStudioPhone = ballroomStudio.getBallroomStudioPhone();
+    	ballroomStudioEmail = ballroomStudio.getBallroomStudioEmail();
     	
 	
 
@@ -48,8 +50,9 @@ public class BallroomStudioData {
 	}
 	
 	}
-	
 }
+
+	
 	
 
 

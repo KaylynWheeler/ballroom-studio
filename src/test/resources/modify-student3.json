@@ -1,0 +1,12 @@
+{
+   "instructorsId" : "3",
+   "studentsFirstName" : "Kay",
+    "studentsLastName" :"Smith",
+	"studentsAddress" : "2535 Castle Road",
+	"studentsCity": "Waverly",
+	"studentssState" : "NE",
+	"studentsZip":"68462",
+	"studentsPhone" :"402 835-2895",
+	"studentEmail": "kaysmoth@gmail.com"
+
+}

@@ -1,0 +1,13 @@
+{
+   "instructorsId" : "1",
+   "studentsFirstName" : "Kim",
+    "studentsLastName" :"Kate",
+	"studentsAddress" : "7895 Arbor St",
+	"studentsCity": "Hickman",
+	"studentssState" : "NE",
+	"studentsZip":"68372",
+	"studentsPhone" :"402 782-9453",
+	"studentsEmail" : "kimkate@yahoo.com"
+	
+
+}

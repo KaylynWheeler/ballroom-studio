@@ -1,0 +1,13 @@
+{
+   "instructorsId" : "2",
+   "studentsFirstName" : "Lacy",
+    "studentsLastName" :"Pale",
+	"studentsAddress" : "1765 Apple Road",
+	"studentsCity": "Roca",
+	"studentssState" : "NE",
+	"studentsZip":"68430",
+	"studentsPhone" :"402 659-7265",
+	"studentsEmail": "lacypale@outlook.com"
+	
+
+}

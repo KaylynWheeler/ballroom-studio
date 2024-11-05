@@ -6,10 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-
 import ballroom.studio.controller.model.BallroomStudioAmenity;
 import ballroom.studio.controller.model.BallroomStudioData;
 import ballroom.studio.controller.model.BallroomStudioInstructors;
@@ -71,6 +69,7 @@ private void setFieldsInBallroomStudio(BallroomStudio ballroomStudio, BallroomSt
 	ballroomStudio.setBallroomStudioState(ballroomStudioData.getBallroomStudioState());
 	ballroomStudio.setBallroomStudioZip(ballroomStudioData.getBallroomStudioZip());
 	ballroomStudio.setBallroomStudioPhone(ballroomStudioData.getBallroomStudioPhone());
+	ballroomStudio.setBallroomStudioEmail(ballroomStudioData.getBallroomStudioEmail());
 	
 }
 
@@ -195,7 +194,12 @@ private void setFieldsIninstructors(Instructors instructors, BallroomStudioInstr
 	instructors.setInstructorsId(ballroomStudioInstructors.getInstructorsId());
 	instructors.setInstructorsFirstName(ballroomStudioInstructors.getInstructorsFirstName());;
 	instructors.setInstructorsLastName(ballroomStudioInstructors.getInstructorsLastName());
+	instructors.setInstructorsAddress(ballroomStudioInstructors.getInstructorsAddress());
+	instructors.setInstructorsCity(ballroomStudioInstructors.getInstructorsCity());
+	instructors.setInstructorsState(ballroomStudioInstructors.getInstructorsState());
+	instructors.setInstructorsZip(ballroomStudioInstructors.getInstructorsZip());
 	instructors.setInstructorsPhone(ballroomStudioInstructors.getInstructorsPhone());
+	instructors.setInstructorsEmail(ballroomStudioInstructors.getInstuctorsEmail());
 	
 }
 
@@ -262,7 +266,12 @@ private void copyStudentsFields(Students students, BallroomStudioInstructorsStud
 students.setStudentsId(ballroomStudioInstructorsStudents.getStudentsId());
 students.setStudentsFirstName(ballroomStudioInstructorsStudents.getStudentsFirstName());;
 students.setStudentsLastName(ballroomStudioInstructorsStudents.getStudentsLastName());
+students.setStudentsAddress(ballroomStudioInstructorsStudents.getStudentsAddress());
+students.setStudentsCity(ballroomStudioInstructorsStudents.getStudentsCity());
+students.setStudentsState(ballroomStudioInstructorsStudents.getStudentsState());
+students.setStudentsZip(ballroomStudioInstructorsStudents.getStudentsZip());
 students.setStudentsPhone(ballroomStudioInstructorsStudents.getStudentsPhone());
+students.setStudentsEmail(ballroomStudioInstructorsStudents.getStudentsEmail());
 }
 
 private Students findOrCreateStudents(Long instructorsId, Long studentsId) {

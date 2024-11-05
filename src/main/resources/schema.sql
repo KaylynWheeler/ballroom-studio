@@ -15,6 +15,7 @@ CREATE TABLE ballroom_studio(
 	ballroom_studio_state varchar(30),
 	ballroom_studio_zip varchar(15),
 	ballroom_studio_phone varchar (30),
+    ballroom_studio_email varchar(128),
 	PRIMARY KEY (ballroom_studio_id)
 	);
 	
@@ -23,6 +24,12 @@ CREATE TABLE instructors (
 	ballroom_studio_id int NOT NULL,
 	instructors_first_name varchar(60)NOT NULL,
 	instructors_last_name varchar(60)NOT NULL,
+	instructors_address varchar(128) NOT NULL,
+	instructors_city varchar(60),
+	instructors_state varchar(30),
+	instructors_zip varchar(15),
+	instructors_phone varchar (30),
+	instructors_email varchar(128),
     PRIMARY KEY (instructors_id),
 	FOREIGN KEY (ballroom_studio_id) REFERENCES ballroom_studio (ballroom_studio_id) ON DELETE CASCADE
 );
@@ -31,6 +38,12 @@ CREATE TABLE  students (
 	instructors_id int NOT NULL,
 	students_first_name varchar(60)NOT NULL,
 	students_last_name varchar(60)NOT NULL,
+	students_address varchar(128) NOT NULL,
+	students_city varchar(60),
+	students_state varchar(30),
+	students_zip varchar(15),
+	students_phone varchar (30),
+	students_email varchar(128),
 	PRIMARY KEY (students_id),
 	FOREIGN KEY (instructors_id) REFERENCES instructors (instructors_id) ON DELETE CASCADE
 
