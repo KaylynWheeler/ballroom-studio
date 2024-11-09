@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ballroom.studio.controller.model.BallroomStudioAmenity;
 import ballroom.studio.controller.model.BallroomStudioData;
@@ -29,24 +30,24 @@ import ballroom.studio.entity.Students;
 
 
 
-
+@Service
 public class BallroomStudioService {
 	@Autowired
-	private static AmenityDao amenityDao;
+	private  AmenityDao amenityDao;
 	@Autowired
-	private static BallroomStudioDao ballroomStudioDao;
+	private  BallroomStudioDao ballroomStudioDao;
 
 	@Autowired
-	private static InstructorsDao instructorsDao;
+	private  InstructorsDao instructorsDao;
 	
 	@Autowired
-	private static LatinStyleDancingDao latinStyleDancingDao;
+	private  LatinStyleDancingDao latinStyleDancingDao;
 	
 	@Autowired
-	private static StandardStyleDancingDao standardStyleDancingDao;
+	private  StandardStyleDancingDao standardStyleDancingDao;
 	
 	@Autowired
-	private static StudentsDao studentsDao;
+	private  StudentsDao studentsDao;
 	
 
 @Transactional(readOnly=false)	
@@ -199,7 +200,7 @@ private void setFieldsIninstructors(Instructors instructors, BallroomStudioInstr
 	instructors.setInstructorsState(ballroomStudioInstructors.getInstructorsState());
 	instructors.setInstructorsZip(ballroomStudioInstructors.getInstructorsZip());
 	instructors.setInstructorsPhone(ballroomStudioInstructors.getInstructorsPhone());
-	instructors.setInstructorsEmail(ballroomStudioInstructors.getInstuctorsEmail());
+	instructors.setInstructorsEmail(ballroomStudioInstructors.getInstructorsEmail());
 	
 }
 
@@ -255,7 +256,7 @@ copyStudentsFields(students, ballroomStudioInstructorsStudents);
 
 
 students.getInstructors().add(instructors);
-instructors .getStudents().add(students);
+instructors.getStudents().add(students);
 
 Students dbStudents = studentsDao.save(students);
 
@@ -264,7 +265,7 @@ return new BallroomStudioInstructorsStudents(dbStudents);
 
 private void copyStudentsFields(Students students, BallroomStudioInstructorsStudents ballroomStudioInstructorsStudents) {
 students.setStudentsId(ballroomStudioInstructorsStudents.getStudentsId());
-students.setStudentsFirstName(ballroomStudioInstructorsStudents.getStudentsFirstName());;
+students.setStudentsFirstName(ballroomStudioInstructorsStudents.getStudentsFirstName());
 students.setStudentsLastName(ballroomStudioInstructorsStudents.getStudentsLastName());
 students.setStudentsAddress(ballroomStudioInstructorsStudents.getStudentsAddress());
 students.setStudentsCity(ballroomStudioInstructorsStudents.getStudentsCity());
@@ -294,8 +295,8 @@ private Students findStudentsById(Long instructorsId, Long studentsId) {
 			}
 		}
 		if(!found) {
-			throw new IllegalArgumentException("The customer with ID=" + studentsId + 
-					"is not emplyee by the pet store with ID=" + instructorsId + ".");
+			throw new IllegalArgumentException("The  student with ID=" + studentsId + 
+					"is not taught by the instructor with ID=" + instructorsId + ".");
 		}
 			return students;
 
@@ -390,7 +391,7 @@ public  BallroomStudioInstructorsStandardStyleDancing retrieveStandardStyleDanci
 
 
 
-private static  StandardStyleDancing findStandardStyleDancingById(Long standardStyleDancingId) {
+private  StandardStyleDancing findStandardStyleDancingById(Long standardStyleDancingId) {
 	return standardStyleDancingDao.findById(standardStyleDancingId)
 			.orElseThrow(() -> new NoSuchElementException(
 					"Standard Style Dancing with Id=" + standardStyleDancingId + " was not found." ));

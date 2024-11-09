@@ -35,7 +35,6 @@ CREATE TABLE instructors (
 );
 CREATE TABLE  students (
 	students_id int NOT NULL AUTO_INCREMENT,
-	instructors_id int NOT NULL,
 	students_first_name varchar(60)NOT NULL,
 	students_last_name varchar(60)NOT NULL,
 	students_address varchar(128) NOT NULL,
@@ -44,9 +43,8 @@ CREATE TABLE  students (
 	students_zip varchar(15),
 	students_phone varchar (30),
 	students_email varchar(128),
-	PRIMARY KEY (students_id),
-	FOREIGN KEY (instructors_id) REFERENCES instructors (instructors_id) ON DELETE CASCADE
-
+	PRIMARY KEY (students_id)
+	
 );
 
 CREATE TABLE  amenity (

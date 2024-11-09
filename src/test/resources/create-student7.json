@@ -1,0 +1,10 @@
+{
+    "studentsFirstName" : "Tim",
+    "studentsLastName" :"Burt",
+	"studentsAddress" : "805 StarWars Road",
+	"studentsCity": "Crete",
+	"studentsState" : "NE",
+	"studentsZip":"68333",
+	"studentsPhone" :"402 825-6594",
+	"studentsEmail" : "timburt@icloud.com"
+}

@@ -1,0 +1,10 @@
+{
+   "studentsFirstName" : "Jannette",
+    "studentsLastName" :"Chaser",
+	"studentsAddress" : "1895 Paris Dr",
+	"studentsCity": "Waverly",
+	"studentsState" : "NE",
+	"studentsZip":"68462",
+	"studentsPhone" :"402 654-3578",
+	"studentsEmail" : "jannettechaser@gamil.com"
+	}

@@ -24,167 +24,171 @@ import ballroom.studio.controller.model.BallroomStudioInstructorsStudents;
 import ballroom.studio.service.BallroomStudioService;
 import lombok.extern.slf4j.Slf4j;
 
-
-
 @RestController
 @RequestMapping("/ballroom_studio")
 @Slf4j
 
 public class BallroomStudioController {
-	
-@Autowired
+
+	@Autowired
 	private BallroomStudioService ballroomStudioService;
-	
-@PutMapping("/ballroomstudio/{ballroomStudioId}")
-	public BallroomStudioData updateBallroomStudio(@PathVariable Long ballroomStudioId, 
-			@RequestBody BallroomStudioData ballroomStudioData ) {
+
+	@PutMapping("/ballroomstudio/{ballroomStudioId}")
+	public BallroomStudioData updateBallroomStudio(@PathVariable Long ballroomStudioId,
+			@RequestBody BallroomStudioData ballroomStudioData) {
 		ballroomStudioData.setBallroomStudioId(ballroomStudioId);
 		log.info("Updating Ballroom Studio {}", ballroomStudioData);
 		return ballroomStudioService.updateBallroomStudio(ballroomStudioData);
 	}
 
-
-@GetMapping("/{ballroomStudioId}")
-public BallroomStudioData retrieveBallroomStudioById(@PathVariable Long ballroomStudioId) {
+	@GetMapping("/{ballroomStudioId}")
+	public BallroomStudioData retrieveBallroomStudioById(@PathVariable Long ballroomStudioId) {
 		log.info("Retrieving Ballroom Studio with ID= {}", ballroomStudioId);
-return ballroomStudioService.retrieveballroomStudioById(ballroomStudioId);
-}
-@PutMapping("/ballroomstudio/{amenityId}")
-public BallroomStudioAmenity updateAmenity(@PathVariable Long amenityId,
-		@RequestBody BallroomStudioAmenity ballroomStudioAmenity ) {
-	log.info("Updating amenities {}", ballroomStudioAmenity);
-	return ballroomStudioService.updateAmenity(ballroomStudioAmenity);
-}
+		return ballroomStudioService.retrieveballroomStudioById(ballroomStudioId);
+	}
 
-@GetMapping("/amenity")
-public List<BallroomStudioAmenity>retrieveAllAmenity() {
+@PutMapping("/amenity/{amenityId}")
+	public BallroomStudioAmenity updateAmenity(@PathVariable Long amenityId,
+			@RequestBody BallroomStudioAmenity ballroomStudioAmenity) {
+		ballroomStudioAmenity.setAmenityId(amenityId);
+		log.info("Updating amenities {}", ballroomStudioAmenity);
+		return ballroomStudioService.updateAmenity(ballroomStudioAmenity);
+	}
+
+@GetMapping("/ballroomstudioamenity/amenity")
+	public List<BallroomStudioAmenity> retrieveAllAmenity() {
 		log.info("Retrieving all  amenity called. ");
-return ballroomStudioService.retrieveAllAmenity();
+		return ballroomStudioService.retrieveAllAmenity();
 
-}
-@GetMapping("/amenity/{amenityId}")
-public BallroomStudioAmenity retrieveAmenityById(@PathVariable Long amenityId) {
+	}
+
+	@GetMapping("/amenity/{amenityId}")
+	public BallroomStudioAmenity retrieveAmenityById(@PathVariable Long amenityId) {
 		log.info("Retrieving amenity with ID= {}", amenityId);
-return ballroomStudioService.retrieveAmenityById(amenityId);
+		return ballroomStudioService.retrieveAmenityById(amenityId);
 
-}
+	}
 
-@DeleteMapping("/amenity")
-public void deleteAllAmenity() {
-log.info("Attempting to delete all instructors");
-throw new UnsupportedOperationException(
-"Deleting all amenties is not allowed.");
+	@DeleteMapping("/amenity")
+	public void deleteAllAmenity() {
+		log.info("Attempting to delete all instructors");
+		throw new UnsupportedOperationException("Deleting all amenties is not allowed.");
 
-}
-@DeleteMapping("/ballroom_studio/{amenityId}")
-public Map< String ,String>deleteAmenityById(
-		@PathVariable Long amenityId) {
-	log.info("Deleting amenties with ID= {}",amenityId);
-	
-	ballroomStudioService.deleteAmenityById(amenityId);
-	 
-	 return Map.of("message", "Delete amenities with ID=" + amenityId +
-			 " was successful.");
-}
+	}
 
-@PutMapping("/ballroom_studio/{instructorsId}")
-public BallroomStudioInstructors updateInstructors(@PathVariable Long instructorsId, 
-		@RequestBody BallroomStudioInstructors ballroomStudioInstructors ) {
-	log.info("Updating instructors {}" , ballroomStudioInstructors);
-	return ballroomStudioService.updateInstructors(ballroomStudioInstructors);
-}
-@GetMapping("/instructors")
-public List<BallroomStudioInstructors>retrieveAllInstructors() {
+	@DeleteMapping("/amenity/{amenityId}")
+	public Map<String, String> deleteAmenityById(@PathVariable Long amenityId) {
+		log.info("Deleting amenties with ID= {}", amenityId);
+
+		ballroomStudioService.deleteAmenityById(amenityId);
+
+		return Map.of("message", "Delete amenities with ID=" + amenityId + " was successful.");
+	}
+
+@PutMapping("/instructors/{instructorsId}")
+	public BallroomStudioInstructors updateInstructors(@PathVariable Long instructorsId,
+			@RequestBody BallroomStudioInstructors ballroomStudioInstructors) {
+		log.info("Updating instructors {}", ballroomStudioInstructors);
+		ballroomStudioInstructors.setInstructorsId(instructorsId);
+		return ballroomStudioService.updateInstructors(ballroomStudioInstructors);
+	}
+
+	@GetMapping("/ballroomstudioinstructors/instructors")
+	public List<BallroomStudioInstructors> retrieveAllInstructors() {
 		log.info("Retrieving all  instructors called. ");
-return ballroomStudioService.retrieveAllInstructors();
+		return ballroomStudioService.retrieveAllInstructors();
 
-}
-@GetMapping("/instructors/{instructorsId}")
-public BallroomStudioInstructors retrieveInstructorsById(@PathVariable Long instructorsId) {
+	}
+
+	@GetMapping("/instructors/{instructorsId}")
+	public BallroomStudioInstructors retrieveInstructorsById(@PathVariable Long instructorsId) {
 		log.info("Retrieving instructors with ID= {}", instructorsId);
-return ballroomStudioService.retrieveInstructorsById(instructorsId);
-}
+		return ballroomStudioService.retrieveInstructorsById(instructorsId);
+	}
 
-@DeleteMapping("/instructors")
-public void deleteAllIstructors() {
-log.info("Attempting to delete all instructors");
-throw new UnsupportedOperationException(
-"Deleting all instructors is not allowed.");
-}
-@DeleteMapping("ballroom_studio/{instructorsId}")
-public Map< String ,String>deleteInstructorsById(
-		@PathVariable Long instructorsId) {
-	log.info("Deleting instructors with ID= {}",instructorsId);
-	
-	ballroomStudioService.deleteInstructorsById(instructorsId);
-	 
-	 return Map.of("message", "Delete instructors with ID=" + instructorsId +
-			 " was successful.");
-}
+	@DeleteMapping("/instructors")
+	public void deleteAllIstructors() {
+		log.info("Attempting to delete all instructors");
+		throw new UnsupportedOperationException("Deleting all instructors is not allowed.");
+	}
 
-@PostMapping("/{instructorsId}/students")
-@ResponseStatus(code= HttpStatus.CREATED)
-public BallroomStudioInstructorsStudents addStudentsToBallRoomStudioInstuctors(@PathVariable Long instructorsId, 
-		@RequestBody BallroomStudioInstructorsStudents ballroomStudioInstructorsStudent ) {
-	log.info("Adding stundents {} to ballroom studio Instructors with ID{}", ballroomStudioInstructorsStudent);
-	return ballroomStudioService.saveStudents(instructorsId,ballroomStudioInstructorsStudent);
-}
+@DeleteMapping("/instructors/{instructorsId}")
+	public Map<String, String> deleteInstructorsById(@PathVariable Long instructorsId) {
+		log.info("Deleting instructors with ID= {}", instructorsId);
 
-@PutMapping("/students/{studentsId}")
-	public BallroomStudioInstructorsStudents updateStudents(@PathVariable Long studentsId, 
-			@RequestBody  BallroomStudioInstructorsStudents  ballroomStudioInstructorsStudents) {
-	 ballroomStudioInstructorsStudents.setStudentsId(studentsId);
+		ballroomStudioService.deleteInstructorsById(instructorsId);
+
+		return Map.of("message", "Delete instructors with ID=" + instructorsId + " was successful.");
+	}
+
+	@PostMapping("/{instructorsId}/students")
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public BallroomStudioInstructorsStudents addStudentsToBallRoomStudioInstuctors(@PathVariable Long instructorsId,
+			@RequestBody BallroomStudioInstructorsStudents ballroomStudioInstructorsStudents) {
+		log.info("Adding students {} to ballroom studio Instructors with ID{}", ballroomStudioInstructorsStudents,instructorsId);
+		return ballroomStudioService.saveStudents(instructorsId, ballroomStudioInstructorsStudents);
+	}
+
+@PutMapping("/{instructorsId}/students/{studentsId}")
+	public BallroomStudioInstructorsStudents updateStudents(@PathVariable Long studentsId,@PathVariable Long instructorsId,
+			@RequestBody BallroomStudioInstructorsStudents ballroomStudioInstructorsStudents) {
+		ballroomStudioInstructorsStudents.setStudentsId(studentsId);
 		log.info("Updating Srudents {}", ballroomStudioInstructorsStudents);
-		return ballroomStudioService.saveStudents(studentsId,ballroomStudioInstructorsStudents);
-		
-	} 
+		return ballroomStudioService.saveStudents( instructorsId,ballroomStudioInstructorsStudents);
 
-@GetMapping("/students")
-public List<BallroomStudioInstructorsStudents> retrieveAllStudents(){
-	log.info("Retrieve all students called.");
-	return ballroomStudioService.retrieveAllStudents();
-}
+	}
+
+@GetMapping("/ballroomstudioinstructorsstudents/students")
+	public List<BallroomStudioInstructorsStudents> retrieveAllStudents() {
+		log.info("Retrieve all students called.");
+		return ballroomStudioService.retrieveAllStudents();
+	}
+
 @GetMapping("/students/{studentsId}")
-public BallroomStudioInstructorsStudents retrieveStudentsById(@PathVariable Long studentsId) {
-	log.info("Retrieve all students with ID= {}",studentsId);
-	return ballroomStudioService.retrieveStudentsById(studentsId);
-	
-}
+	public BallroomStudioInstructorsStudents retrieveStudentsById(@PathVariable Long studentsId) {
+		log.info("Retrieve all students with ID= {}", studentsId);
+		return ballroomStudioService.retrieveStudentsById(studentsId);
+
+	}
+
 @DeleteMapping("/students")
-public void deleteAllStudents() {
-log.info("Attempting to delete all students");
-throw new UnsupportedOperationException(
-"Deleting all students is not allowed.");
-}
+	public void deleteAllStudents() {
+		log.info("Attempting to delete all students");
+		throw new UnsupportedOperationException("Deleting all students is not allowed.");
+	}
+
 @DeleteMapping("/students/{studentsId}")
-public Map< String ,String>deleteStudentsById(
-		@PathVariable Long studentsId) {
+	public Map<String, String> deleteStudentsById(@PathVariable Long studentsId) {
 
-	ballroomStudioService.deleteStudentsById(studentsId);
-	 
-	 return Map.of("message", "Delete students with ID=" + studentsId +
-			 " was successful.");
+		ballroomStudioService.deleteStudentsById(studentsId);
 
-}
+		return Map.of("message", "Delete students with ID=" + studentsId + " was successful.");
 
-@GetMapping("/latin_style_dancing")
-public List<BallroomStudioInstructorsLatinStyleDancing> latinStyleDancing(){
-	log.info("Retrieve all Latin Style Dances called.");
-	return ballroomStudioService.retrieveAllLatinStyleDancing();
-}
-@GetMapping("/latin_style_dancing/{latinStyleDancingId}")
-public BallroomStudioInstructorsLatinStyleDancing retrieveLatinStyleDancingId(@PathVariable Long latinStyleDancingId) {
-	log.info("Retrieve all Latin Style Dance with ID= {}",latinStyleDancingId);
-	return ballroomStudioService.retrieveLatinStyleDancingId(latinStyleDancingId);
-}
-@GetMapping("/standard_style_dancing")
-public List<BallroomStudioInstructorsStandardStyleDancing> standardStyleDancing(){
-	log.info("Retrieve all Standard Style Dances called.");
-	return ballroomStudioService.retrieveStandardStyleDancing();
-}
-@GetMapping("/standard_style_dancing/{standardStyleDancingId}")
-public BallroomStudioInstructorsStandardStyleDancing retrieveStandardStyleDancingId(@PathVariable Long standardStyleDancingId) {
-	log.info("Retrieve all Standard Style Dance with ID= {}",standardStyleDancingId);
-	return ballroomStudioService.retrieveStandardStyleDancingId(standardStyleDancingId);
-    }
+	}
+
+	@GetMapping("/latin_style_dancing")
+	public List<BallroomStudioInstructorsLatinStyleDancing> latinStyleDancing() {
+		log.info("Retrieve all Latin Style Dances called.");
+		return ballroomStudioService.retrieveAllLatinStyleDancing();
+	}
+
+	@GetMapping("/latin_style_dancing/{latinStyleDancingId}")
+	public BallroomStudioInstructorsLatinStyleDancing retrieveLatinStyleDancingId(
+			@PathVariable Long latinStyleDancingId) {
+		log.info("Retrieve all Latin Style Dance with ID= {}", latinStyleDancingId);
+		return ballroomStudioService.retrieveLatinStyleDancingId(latinStyleDancingId);
+	}
+
+	@GetMapping("/standard_style_dancing")
+	public List<BallroomStudioInstructorsStandardStyleDancing> standardStyleDancing() {
+		log.info("Retrieve all Standard Style Dances called.");
+		return ballroomStudioService.retrieveStandardStyleDancing();
+	}
+
+	@GetMapping("/standard_style_dancing/{standardStyleDancingId}")
+	public BallroomStudioInstructorsStandardStyleDancing retrieveStandardStyleDancingId(
+			@PathVariable Long standardStyleDancingId) {
+		log.info("Retrieve all Standard Style Dance with ID= {}", standardStyleDancingId);
+		return ballroomStudioService.retrieveStandardStyleDancingId(standardStyleDancingId);
+	}
 }

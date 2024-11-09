@@ -1,13 +1,10 @@
 {
-   "instructorsId" : "3",
    "studentsFirstName" : "Kay",
     "studentsLastName" :"Smith",
 	"studentsAddress" : "8254 Palm Street",
 	"studentsCity": "Sprague",
-	"studentssState" : "NE",
+	"studentsState" : "NE",
 	"studentsZip":"68438",
 	"studentsPhone" :"402 835-2895",
-	"studentEmail": "kaysmoth@gmail.com"
-	
-
+	"studentEmail": "kaysmith@gmail.com"
 }

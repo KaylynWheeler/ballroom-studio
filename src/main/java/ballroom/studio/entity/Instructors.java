@@ -36,23 +36,27 @@ public class Instructors {
 	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@ManyToMany(cascade =jakarta.persistence.CascadeType.PERSIST)
+	@ManyToMany( cascade =CascadeType.ALL)
 	@JoinTable(
-	   name="instructors_students",
-	   joinColumns = @JoinColumn(name ="instructors_id"),
-	   inverseJoinColumns = @JoinColumn( name = "students_id"))
+			   name="instructors_students",
+			   joinColumns = @JoinColumn(name ="instructors_id"),
+			   inverseJoinColumns = @JoinColumn( name = "students_id"))
 	   private Set<Students> students = new HashSet<>();
 
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "ballroom_studio_id")
 	private BallroomStudio ballroomStudio; 
 	
-	@OneToMany(mappedBy = "instructors", cascade = CascadeType.ALL)
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	@OneToMany(mappedBy = "instructors", cascade = CascadeType.PERSIST)
 	private Set <StandardStyleDancing> standardstyledances  = new HashSet<>();
 	
-	@OneToMany(mappedBy = "instructors", cascade = CascadeType.ALL)
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	@OneToMany(mappedBy = "instructors", cascade = CascadeType.PERSIST)
 	private Set <LatinStyleDancing> latinstyledances  = new HashSet<>();
 
 }

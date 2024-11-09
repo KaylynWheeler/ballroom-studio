@@ -1,0 +1,10 @@
+{
+   "studentsFirstName" : "Sarah",
+    "studentsLastName" :"CandyCane",
+	"studentsAddress" : "1225 CanyCane Lane",
+	"studentsCity": "Crete",
+	"studentsState" : "NE",
+	"studentsZip":"68333",
+	"studentsPhone" :"402 561-5398",
+	"studentsEmail" : "sarahcandycane@icloud.com"
+}

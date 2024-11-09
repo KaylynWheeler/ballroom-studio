@@ -24,7 +24,7 @@ public class LatinStyleDancing {
 	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "instructors_id")
 	private Instructors instructors;
 

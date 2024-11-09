@@ -1,0 +1,10 @@
+{
+    "studentsFirstName" : "Labeth",
+    "studentsLastName" :"Castle",
+	"studentsAddress" : "9546 Castle Dr",
+	"studentsCity": "Lincoln",
+	"studentsState" : "NE",
+	"studentsZip":"68503",
+	"studentsPhone" :"402 891-7546",
+	"studentsEmail" : "labethcastle@outlook.net"
+	}

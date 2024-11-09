@@ -1,0 +1,10 @@
+{
+    "studentsFirstName" : "Tate",
+    "studentsLastName" :"Titan",
+	"studentsAddress" : "5435 Cherry road",
+	"studentsCity": "Hickman",
+	"studentsState" : "NE",
+	"studentsZip":"68372",
+	"studentsPhone" :"402 586-5253",
+	"studentsEmail" : "tatetitan@yahoo.com"
+	}

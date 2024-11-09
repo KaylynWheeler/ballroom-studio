@@ -1,12 +1,10 @@
 {
-   "instructorsId" : "1",
-   "studentsFirstName" : "Kim",
+    "studentsFirstName" : "Kim",
     "studentsLastName" :"Kate",
 	"studentsAddress" : "2554 Jackson Street",
 	"studentsCity": "Crete",
-	"studentssState" : "NE",
+	"studentsState" : "NE",
 	"studentsZip":"68333",
 	"studentsPhone" :"402 782-9453",
 	"studentsEmail" : "kimkate@yahoo.com"
-
-}
+	}

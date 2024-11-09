@@ -21,9 +21,8 @@ public class BallroomStudioInstructors {
 	private String instructorsState;
 	private String instructorsZip;
 	private String instructorsPhone;
-	private String instuctorsEmail;
-	private Set<BallroomStudioInstructorsStudents> students = new HashSet<>();
-	private Set <BallroomStudioInstructorsStandardStyleDancing> standardstyledancing  = new HashSet<>();
+	private String instructorsEmail;
+    private Set <BallroomStudioInstructorsStandardStyleDancing> standardstyledancing  = new HashSet<>();
 	private Set <BallroomStudioInstructorsLatinStyleDancing> latinstyledancing  = new HashSet<>();
 
 
@@ -34,15 +33,12 @@ public class BallroomStudioInstructors {
 		    instructorsLastName = instructors.getInstructorsLastName();
 		    instructorsAddress = instructors.getInstructorsAddress();
 		    instructorsCity = instructors.getInstructorsCity();
-		    instructorsState = instructors.getInstructorsCity();
+		    instructorsState = instructors.getInstructorsState();
 		    instructorsZip = instructors.getInstructorsZip();
 		    instructorsPhone = instructors.getInstructorsPhone();
-		    instuctorsEmail = instructors.getInstructorsEmail();
+		    instructorsEmail = instructors.getInstructorsEmail();
 		   
-		 for (Students student : instructors.getStudents()) {
-		 students.add(new BallroomStudioInstructorsStudents(student));
-	 
-	 }
+
 	 
 	 for (StandardStyleDancing standardStyleDance: instructors.getStandardstyledances()) {
 		 standardstyledancing.add(new BallroomStudioInstructorsStandardStyleDancing(standardStyleDance));

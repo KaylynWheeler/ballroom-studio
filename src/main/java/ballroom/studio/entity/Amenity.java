@@ -22,7 +22,7 @@ public class Amenity {
 
 @EqualsAndHashCode.Exclude
 @ToString.Exclude
-@ManyToOne(cascade = CascadeType.ALL)
+@ManyToOne(cascade = CascadeType.PERSIST)
 @JoinColumn(name = "ballroom_studio_id")
 private BallroomStudio ballroomStudio;
 }
